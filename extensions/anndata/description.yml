@@ -1,0 +1,33 @@
+extension:
+  name: anndata
+  description: Read AnnData (.h5ad) files for single-cell genomics data analysis
+  version: 0.3.7
+  language: C++
+  build: cmake
+  license: MIT
+  maintainers:
+    - honicky
+
+repo:
+  github: honicky/anndata-duckdb-extension
+  ref: ec69bd902f5e4a8c835936df723a33e55e2c11ac
+
+docs:
+  hello_world: |
+    -- Attach an AnnData file and query observations
+    ATTACH 'sample.h5ad' AS adata (TYPE anndata);
+    SELECT * FROM adata.obs LIMIT 5;
+  extended_description: |
+    This extension enables DuckDB to read AnnData (.h5ad) files, the standard format
+    for single-cell genomics data analysis.
+
+    **Available tables after attaching an AnnData file:**
+    - `obs` - Cell/observation metadata
+    - `var` - Gene/variable metadata
+    - `X` - Expression matrix
+    - `obsm_*` - Dimensional reductions (PCA, UMAP, etc.)
+    - `varm_*` - Variable embeddings
+    - `obsp_*` - Pairwise observation matrices
+    - `varp_*` - Pairwise variable matrices
+    - `layers_*` - Alternative expression layers
+    - `uns` - Unstructured metadata
