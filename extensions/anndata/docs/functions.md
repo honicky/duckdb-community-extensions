@@ -2,6 +2,13 @@
 
 ## Function Index
 
+**[Scalar Functions](#scalar-functions)**
+
+| Function | Summary |
+| --- | --- |
+| [`anndata_hello`](#anndata_hello) | Returns a greeting message from the AnnData extension. |
+| [`anndata_version`](#anndata_version) | Returns the version of the AnnData extension. |
+
 **[Table Functions](#table-functions)**
 
 | Function | Summary |
@@ -13,8 +20,51 @@
 | [`anndata_scan_obsm`](#anndata_scan_obsm) | Scan observation embeddings (e.g., PCA, UMAP) from an AnnData file. |
 | [`anndata_scan_varm`](#anndata_scan_varm) | Scan variable embeddings from an AnnData file. |
 | [`anndata_scan_layers`](#anndata_scan_layers) | Scan alternative expression matrices (layers) from an AnnData file. |
+| [`anndata_scan_uns`](#anndata_scan_uns) | Scan unstructured metadata from an AnnData file. |
 | [`anndata_scan_obsp`](#anndata_scan_obsp) | Scan observation pairwise matrices from an AnnData file. |
 | [`anndata_scan_varp`](#anndata_scan_varp) | Scan variable pairwise matrices from an AnnData file. |
+
+----
+
+## Scalar Functions
+
+### anndata_hello
+
+#### Signature
+
+```sql
+anndata_hello ()
+```
+
+#### Description
+
+Returns a greeting message from the AnnData DuckDB extension.
+
+#### Example
+
+```sql
+SELECT anndata_hello();
+```
+
+----
+
+### anndata_version
+
+#### Signature
+
+```sql
+anndata_version ()
+```
+
+#### Description
+
+Returns the version of the AnnData DuckDB extension.
+
+#### Example
+
+```sql
+SELECT anndata_version();
+```
 
 ----
 
@@ -211,6 +261,26 @@ Scans alternative expression matrices (layers) from an AnnData file. Common laye
 
 ```sql
 SELECT * FROM anndata_scan_layers('data.h5ad', 'raw') LIMIT 5;
+```
+
+----
+
+### anndata_scan_uns
+
+#### Signature
+
+```sql
+anndata_scan_uns (path VARCHAR)
+```
+
+#### Description
+
+Scans unstructured metadata (uns) from an AnnData file. Returns key-value pairs with columns for key, type, dtype, shape, and value.
+
+#### Example
+
+```sql
+SELECT * FROM anndata_scan_uns('data.h5ad');
 ```
 
 ----
